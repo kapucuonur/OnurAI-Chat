@@ -37,8 +37,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (response.ok) {
                     responseContainer.style.opacity = '0';
-                    responseContainer.innerHTML = `<p><strong>You:</strong> ${inputText}</p>
-                                                  <p><strong>Groq:</strong> ${data.response}</p>`;
+                    // Kullanıcı mesajını ve bot yanıtını formatla
+                    const formattedUserMessage = formatResponse(sanitizeInput(inputText));
+                    const formattedBotResponse = formatResponse(sanitizeInput(data.response));
+                    responseContainer.innerHTML = `<p><strong>You:</strong> ${formattedUserMessage}</p>
+                                                  <p><strong>OnurAI:</strong> ${formattedBotResponse}</p>`;
                     setTimeout(() => {
                         responseContainer.style.opacity = '1';
                     }, 100);
@@ -69,4 +72,29 @@ document.addEventListener('DOMContentLoaded', function () {
     themeButton.addEventListener('click', () => {
         document.body.classList.toggle('dark-theme');
     });
+
+    // Formatlama fonksiyonu
+    function formatResponse(response) {
+        // Bold text: **text** -> <strong>text</strong>
+        response = response.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        
+        // Italic text: *text* -> <em>text</em>
+        response = response.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        
+        // New lines: \n -> <br>
+        response = response.replace(/\n/g, '<br>');
+        
+        // Links: [text](url) -> <a href="url">text</a>
+        response = response.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+        
+        // Lists: - item -> <ul><li>item</li></ul>
+        response = response.replace(/- (.*?)(<br>|$)/g, '<ul><li>$1</li></ul>');
+        
+        return response;
+    }
+
+    // XSS koruması için giriş temizleme fonksiyonu
+    function sanitizeInput(input) {
+        return input.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
 });
