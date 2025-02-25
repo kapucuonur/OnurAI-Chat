@@ -1,3 +1,5 @@
+![OnurAI-Chat Screenshot](static/images/app-view.png)
+
 # OnurAI Chat Application
 
 A simple Flask-based web application that interacts with the Groq API to provide real-time responses to user queries. Users can type their questions, and the application will display the response from the Groq API.
