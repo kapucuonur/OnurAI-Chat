@@ -64,6 +64,7 @@ Open your browser and go to http://127.0.0.1:5001.
 
 ### Project Structure
 
+```
 OnurAI-Chat/
 │
 ├── app/
@@ -85,3 +86,4 @@ OnurAI-Chat/
 ├── Procfile # Deployment configuration for Render
 ├── .env # Environment variables (not in version control)
 └── .gitignore # Files to ignore in Git
+```
