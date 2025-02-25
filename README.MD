@@ -65,21 +65,21 @@ Open your browser and go to http://127.0.0.1:5001.
 OnurAI-Chat/
 │
 ├── app/
-│ templates/ # HTML templates
-│ └── index.html # Main chat interface # Main Flask application
-│ **init**.py
-│ models.py
-│ routes.py
-│ utils.py
+│ ├── templates/ # HTML templates
+│ │ └── index.html # Main chat interface
+│ ├── **init**.py # Main Flask application
+│ ├── models.py # Database models
+│ ├── routes.py # API routes and views
+│ ├── utils.py # Utility functions
+│
+├── static/ # Static files (CSS, JS, images)
+│ ├── js/
+│ │ └── script.js # JavaScript logic
+│ ├── css/
+│ │ └── style.css # Custom styles
+│
+├── run.py # Entry point for running the app
 ├── requirements.txt # Python dependencies
 ├── Procfile # Deployment configuration for Render
-├── .env # Environment variables (not included in version control)
-├── .gitignore # Files to ignore in Git
-│
-├── run.py
-│
-└── static/ # Static files (CSS, JS, images)
-└──js/
-└──script.js
-└── css/
-└── style.css # Custom CSS for the application
+├── .env # Environment variables (not in version control)
+└── .gitignore # Files to ignore in Git
